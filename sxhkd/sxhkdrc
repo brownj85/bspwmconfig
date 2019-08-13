@@ -1,0 +1,50 @@
+super + Return
+	start_st
+
+super + space
+	dmenu_run
+
+super + shift + Escape
+	pkill -USR1 -x sxhkd
+
+super + Escape
+	bspc quit
+
+super + {_,shift + }w
+	bspc node -{c,k}
+
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}'
+	
+super + {_,shift + }{Left, Down, Up, Right}
+	bspc node -{f,s} {west,south,north,east}
+
+super + alt + {Left, Down, Up, Right}
+	bspc node -z {Left -20 0,Bottom 0 20,Top 0 -20,Right 20 0}
+
+super + alt + shift + {Left, Down, Up, Right}
+	bspc node -z {Right -20 0,Top 0 20,Bottom 0 -20,Left 20 0}
+
+{XF86MonBrightnessUp, XF86MonBrightnessDown}
+	adj_blight $BLIGHT {inc,dec} 250 
+
+{XF86KbdBrightnessUp, XF86KbdBrightnessDown}
+	adj_blight $KBD_BLIGHT {inc,dec} 25
+
+{XF86AudioLowerVolume, XF86AudioRaiseVolume}
+	amixer -q sset Master 5%{-,+}
+
+XF86AudioMute
+	amixer -q sset Master toggle
+
+super + {comma, period}
+	{left_expand, right_expand}
+
+super + shift + Return
+	xfe $(get_window_cwd)
+
+super + t
+	bspc node --state ~tiled
+
+super + f
+	bspc node --state ~fullscreen
